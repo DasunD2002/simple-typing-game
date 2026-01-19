@@ -1,0 +1,175 @@
+*, html {
+  margin: 0;
+}
+
+body{
+  background: linear-gradient(135deg, rgb(8, 4, 22), rgb(2, 12, 78), rgb(8, 3, 22));
+}
+
+.container{
+  height: 150vh;
+}
+
+.container, .key {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.key {
+  background-color: aqua;
+  height: 15rem;
+  width: 15rem;
+  border-radius: 100%;
+  font-size: 120px;
+  box-shadow: inset 3px 2px 10px blue;
+}
+
+.container h1 {
+  display: block;
+  margin-bottom: 2rem;
+  margin-top: 3rem;
+  font-size: 70px;
+  color: white;
+}
+
+#game-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.correct, .wrong, .miss{
+  display: inline-flex;
+  margin: 1rem;
+}
+
+.right-correct .correct, .right-correct .wrong, .right-correct .miss{
+  padding: 1rem;
+  height: 8rem;
+  width: 8rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: xx-large;
+}
+
+.right-correct .correct span, .right-correct .wrong span, .right-correct .miss span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-correct .correct{
+  background: linear-gradient(270deg, rgb(39, 250, 39), rgb(214, 214, 214));
+  box-shadow: inset 2px 3px 10px rgb(8, 73, 2);
+}
+
+.right-correct .wrong{
+  background: linear-gradient(270deg, rgb(250, 89, 68), rgb(214, 214, 214));
+  box-shadow: inset 2px 3px 10px rgb(251, 22, 22); 
+}
+
+.right-correct .miss{
+  background: linear-gradient(270deg, rgb(68, 86, 250), rgb(214, 214, 214));
+  box-shadow: inset 2px 3px 10px rgb(45, 22, 251); 
+}
+
+#pause{
+  width: 10rem;
+  height: 2.5rem;
+  font-size: 25px;
+  text-align: center;
+  font-family:monospace;
+  font-weight: bold;
+  border-style: ridge;
+  border-radius: 32px;
+  color: white;
+  background: linear-gradient(135deg, rgb(245, 4, 4), rgb(248, 5, 211), red);
+  box-shadow: 3px 3px 3px black;
+  margin-right: 2rem;
+}
+
+#start{
+  margin-top: 1.5rem;
+  width: 10rem;
+  height: 2.5rem;
+  font-size: 25px;
+  text-align: center;
+  font-family:monospace;
+  font-weight: bold;
+  border-style: ridge;
+  border-radius: 32px;
+  color: white;
+  background: linear-gradient(135deg, rgb(2, 132, 17), rgb(189, 180, 0), rgb(2, 132, 17));
+  box-shadow: 3px 3px 3px black;
+}
+
+#start:hover, #pause:hover{
+  cursor: pointer;
+  box-shadow: none;
+  background: linear-gradient(290deg, blue, rgb(0, 255, 247), blue);
+  color: black;
+  border: none;
+}
+
+progress {
+  width: 80%;
+  height: 16px;
+  border-radius: 20px;
+  overflow: hidden;
+  appearance: none;
+  margin-top: 2rem;
+  
+}
+
+progress::-webkit-progress-bar{
+  background-color: #c8c8c8;
+  border-radius: 20px;
+}
+
+progress::-webkit-progress-value{
+  background: linear-gradient(90deg, #22c55e, #03501f);
+  border-radius: 20px;
+  transition: width 0.2s ease;
+}
+
+/* If use fire fox */
+progress::-moz-progress-bar {
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+  border-radius: 20px;
+}
+
+.lab-speed{
+  margin-top: 1rem;
+  font-family: monospace;
+  font-size: 19px;
+  font-weight: 700;
+  color: white;
+}
+
+#speed{
+  margin-top: 0.4rem;
+  height: 6px;
+   -webkit-appearance: none;
+  background: linear-gradient(to right, #f2ff00, #ff6a00, red);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+#speed::-webkit-slider-thumb{
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  -webkit-appearance: none;
+  background: linear-gradient(90deg, #ff6a00, red);
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.6);
+  transition: transform 0.2s ease;
+}
+
+#speed::-webkit-slider-thumb:hover{
+  transform: scale(1.5);
+}

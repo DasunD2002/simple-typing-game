@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="typing_game.css" type="text/css">
+  <title>Typing Game</title>
+</head>
+<body id="body">
+  <div class="container">
+      <h1>Typing Game</h1>
+      <div id="game-section">
+          <div class="key">
+            <h2 id="display" style="padding: 20px;">Key</h2>
+          </div>
+          <div class="right-correct">
+              <div class="correct">
+                <p>Correct<span id="correct">0</span></p>
+              </div>
+              <div class="wrong">
+                <p>
+                  Wrong <span id="wrong">0</span>
+                </p>
+              </div>
+              <div class="miss">
+                <p>
+                  Missed <span id="missed">0</span>
+                </p>
+              </div>
+          </div>
+          <div class="pause-div">
+                <button id="pause" onclick="pauseTime()">Stop</button>
+                <button id="start" onclick="createNewLetter()">Re-Start</button>
+          </div>
+      </div>
+      <progress value="0" max="100"></progress>
+      <label for="speed" class="lab-speed">Speed</label>
+      <input type="range" id="speed" min="100" max="1000">
+  </div>
+
+  
+
+      <script>
+        function randomLetter(){
+          const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          const randomIndex = Math.floor(Math.random() * alphabet.length);
+          //Math.floor remove decimals and give only the integer value
+          //Math.random() will get a random number. 
+          return alphabet[randomIndex];
+        }
+
+        const display = document.getElementById("display");
+        const correct = document.getElementById("correct");
+        const wrong = document.getElementById("wrong");
+        const progressBar = document.querySelector("progress");
+        let timer;
+        const pause = document.getElementById("pause");
+        const missed = document.getElementById("missed");
+        const speed = document.getElementById("speed");
+        let count_correct = 0;
+        let count_wrong = 0;
+
+        document.getElementById("body").addEventListener("keydown", function(e){  
+          if(isPause == false){
+              if(display.innerHTML == e.key.toUpperCase()){
+                count_correct += 1;
+              }else{
+                count_wrong += 1;
+              }
+            
+              correct.innerHTML = count_correct;
+              wrong.innerHTML = count_wrong;
+              //if we put those two things outside of the eventListener then it wont work correctly because then it loads only when page loads if we need to update it when event listener works we should place it inside of the event listener.
+              createNewLetter();
+
+          }else{
+            alert("Please Re-Start the game to Continue");
+          }
+        });
+
+        let missedCount = 0;
+        let delay_ = 1000;
+
+        function startTimer(){
+          clearInterval(timer);
+          progressBar.value = 0;
+          timer = setInterval(function(){
+            progressBar.value += 10;
+
+            if(progressBar.value >= 100){
+              display.innerHTML = randomLetter();
+              missedCount += 1;
+              progressBar.value = 0;
+            }
+
+            missed.innerHTML = missedCount;
+            isPause = false;
+          },delay_);
+
+        }
+
+        let isPause = false;
+        function pauseTime(){
+          clearInterval(timer);
+          isPause = true;
+        }
+
+        speed.oninput = function(){
+          delay_ = 1000 - speed.value;
+          startTimer();
+        }
+
+        function createNewLetter(){
+           display.innerHTML = randomLetter();
+           startTimer();
+        }
+
+        createNewLetter();
+      </script>
+</body>
+</html>
